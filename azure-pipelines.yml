@@ -14,12 +14,12 @@ steps:
   displayName: Restore
   inputs:
     command: restore
-    projects: '**/*.csproj'
+    projects: '**/Demo.SeleniumTests.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: Publish
   inputs:
-    projects: '**/*.csproj'
+    projects: '**/Demo.SeleniumTests.csproj'
     arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests'
 
 - task: PublishBuildArtifacts@1
