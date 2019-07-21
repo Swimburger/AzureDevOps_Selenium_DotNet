@@ -15,12 +15,13 @@ steps:
   displayName: Build
   inputs:
     projects: '**/*.csproj'
-    arguments: '--configuration Release'
+    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: Demo.SeleniumTests/bin/Release/netcoreapp3.0/
+    PathtoPublish: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
+
 
 
