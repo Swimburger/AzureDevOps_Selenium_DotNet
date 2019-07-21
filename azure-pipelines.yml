@@ -19,6 +19,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
+    command: publish
     projects: '**/Demo.SeleniumTests.csproj'
     arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests'
 
