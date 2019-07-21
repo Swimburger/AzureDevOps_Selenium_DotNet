@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <!-- TestSessionTimeout was introduced in Visual Studio 2017 version 15.5 -->
+    <!-- Specify timeout in milliseconds. A valid value should be greater than 0 -->
+    <TestSessionTimeout>60000</TestSessionTimeout>
+  </RunConfiguration>
+  <TestRunParameters>
+    <Parameter name="webAppUrl" value="https://dotnet.microsoft.com/" />
+    <Parameter name="headless" value="true" />
+  </TestRunParameters>
+</RunSettings>
