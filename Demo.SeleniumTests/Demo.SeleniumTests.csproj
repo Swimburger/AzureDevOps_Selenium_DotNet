@@ -13,12 +13,6 @@
     <Content Include=".runsettings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="chromedriver.exe" Condition="!$(RuntimeIdentifier.Contains('linux'))">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="chromedriver" Condition="$(RuntimeIdentifier.Contains('linux'))">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Target Name="dlfkljd" AfterTargets="Build">  
     <Message Text="Runtime ID = $(RuntimeIdentifier)" />   
