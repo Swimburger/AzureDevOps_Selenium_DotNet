@@ -1,78 +1,43 @@
 trigger:
 - master
-jobs:
-- job: Build_Windows_Binaries
-  displayName: Build Windows Binaries
-  pool:
-    name: Hosted Windows 2019 with VS2019
 
-  steps:
-  - task: DotNetCoreInstaller@0
-    displayName: 'Use .NET Core sdk 2.2.301'
-    inputs:
-      version: 2.2.301
+pool:
+  name: Hosted Windows 2019 with VS2019
 
-  - task: DotNetCoreCLI@2
-    displayName: Restore
-    inputs:
-      command: restore
-      projects: '**/Demo.SeleniumTests.csproj'
-  
-  - task: DotNetCoreCLI@2
-    displayName: Publish for Windows
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: '**/Demo.SeleniumTests.csproj'
-      arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Windows'
-      zipAfterPublish: false
-      modifyOutputPath: false
-  
-  - task: DotNetCoreCLI@2
-    displayName: Publish for Linux
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: '**/Demo.SeleniumTests.csproj'
-      arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Linux  --runtime linux-x64'
-      zipAfterPublish: false
-      modifyOutputPath: false
-  
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
-    condition: succeededOrFailed()
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.2.301'
+  inputs:
+    version: 2.2.301
 
-- job: Build_Linux_Binaries
-  displayName: Build Linux Binaries
-  pool:
-    name: Hosted Ubuntu 1604
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/Demo.SeleniumTests.csproj'
 
-  steps:
-  - task: DotNetCoreInstaller@0
-    displayName: 'Use .NET Core sdk 2.2.301'
-    inputs:
-      version: 2.2.301
+- task: DotNetCoreCLI@2
+  displayName: Publish for Windows
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Demo.SeleniumTests.csproj'
+    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Windows'
+    zipAfterPublish: false
+    modifyOutputPath: false
 
-  - task: DotNetCoreCLI@2
-    displayName: Restore
-    inputs:
-      command: restore
-      projects: '**/Demo.SeleniumTests.csproj'
-  
-  - task: DotNetCoreCLI@2
-    displayName: Publish for Linux
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: '**/Demo.SeleniumTests.csproj'
-      arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Linux  --runtime linux-x64'
-      zipAfterPublish: false
-      modifyOutputPath: false
-  
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
-    condition: succeededOrFailed()
+- task: DotNetCoreCLI@2
+  displayName: Publish for Linux
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Demo.SeleniumTests.csproj'
+    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Linux  --runtime linux-x64'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
