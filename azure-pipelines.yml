@@ -32,7 +32,7 @@ steps:
     command: publish
     publishWebProjects: false
     projects: '**/Demo.SeleniumTests.csproj'
-    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Ubuntu --runtime ubuntu.16.04-x64'
+    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Linux  --runtime linux-x64'
     zipAfterPublish: false
     modifyOutputPath: false
 
