@@ -17,12 +17,22 @@ steps:
     projects: '**/Demo.SeleniumTests.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: Publish
+  displayName: Publish for Windows
   inputs:
     command: publish
     publishWebProjects: false
     projects: '**/Demo.SeleniumTests.csproj'
-    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests'
+    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Windows'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: DotNetCoreCLI@2
+  displayName: Publish for Linux
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Demo.SeleniumTests.csproj'
+    arguments: '--configuration Release -o $(build.artifactstagingdirectory)/SeleniumTests/Ubuntu --runtime ubuntu.16.04-x64'
     zipAfterPublish: false
     modifyOutputPath: false
 
