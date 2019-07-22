@@ -17,7 +17,7 @@ steps:
     projects: '**/Demo.SeleniumTests.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: Publish for Windows
+  displayName: Publish
   inputs:
     command: publish
     publishWebProjects: false
